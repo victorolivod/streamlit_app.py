@@ -1,38 +1,67 @@
 import streamlit as st
-import time
 
-st.set_page_config(layout="wide")
-st.title('Demostración de múltiples barras de progreso')
+st.title('Encuesta de Hábitos y Preferencias')
+st.header('Por favor responde las siguientes preguntas:')
 
-with st.expander('¿Cómo funciona esto?'):
-    st.write("""
-        Este ejemplo muestra cómo manejar varias barras de progreso que avanzan a diferentes ritmos.
-        Es útil para simular tareas con distintos tiempos de ejecución.
-    """)
+with st.form('encuesta_personal'):
+    st.subheader('**Tus respuestas**')
 
-# Colocamos las 3 barras en columnas para visualizarlas en paralelo
-col1, col2, col3 = st.columns(3)
+    # Pregunta 1
+    edad = st.selectbox('¿Cuál es tu rango de edad?', 
+                        ['Menos de 18', '18-24', '25-34', '35-44', '45-54', '55 o más'])
 
-with col1:
-    st.subheader("Carga rápida")
-    progress1 = st.progress(0)
-    for i in range(100):
-        time.sleep(0.01)  # Muy rápida
-        progress1.progress(i + 1)
+    # Pregunta 2
+    genero = st.radio('¿Con qué género te identificas?', 
+                      ['Femenino', 'Masculino', 'No binario', 'Prefiero no decirlo'])
 
-with col2:
-    st.subheader("Carga media")
-    progress2 = st.progress(0)
-    for i in range(100):
-        time.sleep(0.03)  # Velocidad intermedia
-        progress2.progress(i + 1)
+    # Pregunta 3
+    nivel_educativo = st.selectbox('¿Cuál es tu nivel educativo más alto?', 
+                                   ['Primaria', 'Secundaria', 'Preparatoria', 'Licenciatura', 'Posgrado'])
 
-with col3:
-    st.subheader("Carga lenta")
-    progress3 = st.progress(0)
-    for i in range(100):
-        time.sleep(0.06)  # Más lenta
-        progress3.progress(i + 1)
+    # Pregunta 4
+    trabaja_estudia = st.radio('¿Actualmente trabajas o estudias?', 
+                               ['Trabajo', 'Estudio', 'Ambos', 'Ninguno'])
 
-st.success("Las tres cargas han finalizado correctamente.")
+    # Pregunta 5
+    horas_dormir = st.slider('¿Cuántas horas duermes en promedio por noche?', 0, 12, 7)
 
+    # Pregunta 6
+    deporte = st.radio('¿Realizas actividad física regularmente?', 
+                       ['Sí', 'No'])
+
+    # Pregunta 7
+    comida_fav = st.selectbox('¿Cuál es tu tipo de comida favorita?', 
+                              ['Mexicana', 'Italiana', 'Japonesa', 'China', 'Vegetariana', 'Otra'])
+
+    # Pregunta 8
+    redes_sociales = st.multiselect('¿Qué redes sociales usas con frecuencia?', 
+                                    ['Facebook', 'Instagram', 'TikTok', 'X (Twitter)', 'LinkedIn', 'Ninguna'])
+
+    # Pregunta 9
+    mascotas = st.checkbox('¿Tienes mascotas?')
+
+    # Pregunta 10
+    satisfaccion = st.select_slider('¿Qué tan satisfecho/a estás con tu vida actualmente?', 
+                                    options=['Muy insatisfecho/a', 'Insatisfecho/a', 'Neutral', 'Satisfecho/a', 'Muy satisfecho/a'])
+
+    # Botón para enviar
+    enviado = st.form_submit_button('Enviar')
+
+# Mostrar resultados si se envió
+if enviado:
+    st.markdown(f'''
+    ### ✅ ¡Gracias por participar!
+    **Tus respuestas:**
+    - Edad: `{edad}`
+    - Género: `{genero}`
+    - Nivel educativo: `{nivel_educativo}`
+    - Actividad principal: `{trabaja_estudia}`
+    - Horas de sueño: `{horas_dormir}`
+    - Realiza ejercicio: `{deporte}`
+    - Comida favorita: `{comida_fav}`
+    - Redes sociales: `{', '.join(redes_sociales) if redes_sociales else 'Ninguna'}`
+    - ¿Tiene mascotas?: `{'Sí' if mascotas else 'No'}`
+    - Satisfacción con la vida: `{satisfaccion}`
+    ''')
+else:
+    st.info('☝️ Responde la encuesta y presiona "Enviar"')
