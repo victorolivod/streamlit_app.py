@@ -1,23 +1,32 @@
 import streamlit as st
+import pandas as pd
 
-st.header('¿Qué soluciones de análisis te interesan más?')
+st.title('Cargador de archivos - Danu Analítica')
 
-st.write('Selecciona los servicios que te interesan para tu empresa o proyecto:')
+# Primer archivo: Datos de ventas
+st.subheader('🔽 Cargar archivo de ventas (CSV)')
+ventas_file = st.file_uploader("Selecciona el archivo de ventas", key="ventas")
 
-# Opciones tipo checkbox con otro enfoque
-analisis_clientes = st.checkbox('Segmentación de clientes')
-analisis_ventas = st.checkbox('Análisis de tendencias de ventas')
-alertas = st.checkbox('Alertas automáticas por umbrales')
-panel_ejecutivo = st.checkbox('Panel de control para gerencia')
-integracion_datos = st.checkbox('Integración de datos desde distintas fuentes')
-#RESPUESTAS
-if analisis_clientes:
-    st.write('🔍 Anotado: análisis para entender mejor a tus clientes.')
-if analisis_ventas:
-    st.write('📈 Consideraremos herramientas para detectar tendencias y cambios en ventas.')
-if alertas:
-    st.write('🚨 Agendamos tu interés en configurar alertas automáticas por condiciones específicas.')
-if panel_ejecutivo:
-    st.write('📊 Te mostraremos un panel con indicadores clave para la alta dirección.')
-if integracion_datos:
-    st.write('🔗 Registrado: integración de múltiples fuentes de datos en un solo flujo.')
+if ventas_file is not None:
+    ventas_df = pd.read_csv(ventas_file)
+    st.subheader('📊 Datos de Ventas')
+    st.write(ventas_df)
+    st.subheader('📈 Estadísticas descriptivas - Ventas')
+    st.write(ventas_df.describe())
+else:
+    st.info('☝️ Carga un archivo CSV con los datos de ventas.')
+
+st.markdown("---")
+
+# Segundo archivo: Datos de clientes
+st.subheader('🔽 Cargar archivo de clientes (CSV)')
+clientes_file = st.file_uploader("Selecciona el archivo de clientes", key="clientes")
+
+if clientes_file is not None:
+    clientes_df = pd.read_csv(clientes_file)
+    st.subheader('📊 Datos de Clientes')
+    st.write(clientes_df)
+    st.subheader('📈 Estadísticas descriptivas - Clientes')
+    st.write(clientes_df.describe())
+else:
+    st.info('☝️ Carga un archivo CSV con los datos de clientes.')
