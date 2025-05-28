@@ -1,38 +1,23 @@
 import streamlit as st
 
-st.header('Selecciona tus preferencias')
+st.header('¿Qué soluciones de análisis te interesan más?')
 
-actividades = st.multiselect(
-    '¿Qué actividades disfrutas en tu tiempo libre?',
-    ['Leer', 'Escuchar música', 'Salir con amigos', 'Ver series', 'Hacer ejercicio'],
-    default=['Escuchar música', 'Ver series']
-)
-st.write('Actividades seleccionadas:', actividades)
+st.write('Selecciona los servicios que te interesan para tu empresa o proyecto:')
 
-comidas = st.multiselect(
-    '¿Qué comidas te encantan y nunca rechazarías?',
-    ['Pizza', 'Tacos', 'Hamburguesas', 'Sushi', 'Pasta'],
-    default=['Pizza', 'Tacos']
-)
-st.write('Tus favoritas:', comidas)
-
-viajes = st.multiselect(
-    '¿A qué lugares te gustaría viajar?',
-    ['Japón', 'Italia', 'Islandia', 'Perú', 'Canadá'],
-    default=['Japón', 'Italia']
-)
-st.write('Te gustaría ir a:', viajes)
-
-apps = st.multiselect(
-    '¿Qué apps usas casi todos los días?',
-    ['WhatsApp', 'Instagram', 'Spotify', 'YouTube', 'Google Maps'],
-    default=['WhatsApp', 'YouTube']
-)
-st.write('Usas frecuentemente:', apps)
-
-habitos = st.multiselect(
-    '¿Qué hábitos intentas mantener con regularidad?',
-    ['Dormir bien', 'Comer saludable', 'Estudiar', 'Hacer ejercicio', 'Leer'],
-    default=['Dormir bien', 'Comer saludable']
-)
-st.write('Tus hábitos seleccionados:', habitos)
+# Opciones tipo checkbox con otro enfoque
+analisis_clientes = st.checkbox('Segmentación de clientes')
+analisis_ventas = st.checkbox('Análisis de tendencias de ventas')
+alertas = st.checkbox('Alertas automáticas por umbrales')
+panel_ejecutivo = st.checkbox('Panel de control para gerencia')
+integracion_datos = st.checkbox('Integración de datos desde distintas fuentes')
+#RESPUESTAS
+if analisis_clientes:
+    st.write('🔍 Anotado: análisis para entender mejor a tus clientes.')
+if analisis_ventas:
+    st.write('📈 Consideraremos herramientas para detectar tendencias y cambios en ventas.')
+if alertas:
+    st.write('🚨 Agendamos tu interés en configurar alertas automáticas por condiciones específicas.')
+if panel_ejecutivo:
+    st.write('📊 Te mostraremos un panel con indicadores clave para la alta dirección.')
+if integracion_datos:
+    st.write('🔗 Registrado: integración de múltiples fuentes de datos en un solo flujo.')
