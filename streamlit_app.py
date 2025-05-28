@@ -1,32 +1,30 @@
-import numpy as np
-import altair as alt
-import pandas as pd
 import streamlit as st
+from datetime import time, datetime
 
-st.header('st.write con datos clínicos simulados')
+st.header('Mi propia versión utilizando diferentes datos')
 
-st.write('Mostrando información de pacientes del estudio clínico 2025.')
+st.subheader('Slider')
+horas_sueño = st.slider('¿Cuántas horas duermes normalmente por noche?', 0, 12, 7)
+st.write("Duermes", horas_sueño, "horas por noche")
 
-st.write(42)  # Por ejemplo, número de pacientes en observación
-
-pacientes_df = pd.DataFrame({
-    'ID Paciente': [2001, 2002, 2003, 2004],
-    'Edad': [34, 58, 45, 29],
-    'Presión Sistólica': [120, 145, 132, 118]
-})
-st.write(pacientes_df)
-
-st.write('Datos vitales registrados:', pacientes_df, 'Fin de la muestra.')
-
-datos_vitales = pd.DataFrame(
-    np.random.randn(200, 3),
-    columns=['Frecuencia Cardíaca', 'Temperatura', 'Nivel de Oxígeno']
+st.subheader('Range slider')
+frecuencia = st.slider(
+    'Selecciona tu rango de frecuencia cardíaca en reposo (lpm)',
+    40.0, 100.0, (60.0, 80.0)
 )
-grafico = alt.Chart(datos_vitales).mark_circle().encode(
-    x='Frecuencia Cardíaca',
-    y='Temperatura',
-    size='Nivel de Oxígeno',
-    color='Nivel de Oxígeno',
-    tooltip=['Frecuencia Cardíaca', 'Temperatura', 'Nivel de Oxígeno']
+st.write('Rango seleccionado:', frecuencia)
+
+st.subheader('Range time slider')
+horario_tutorias = st.slider(
+    "Selecciona tu horario disponible para tutorías:",
+    value=(time(14, 0), time(16, 30))
 )
-st.write(grafico)
+st.write("Tu horario disponible es:", horario_tutorias)
+
+st.subheader('Datetime slider')
+proximo_examen = st.slider(
+    "¿Cuándo es tu próximo examen?",
+    value=datetime(2025, 6, 10, 8, 0),
+    format="MM/DD/YY - hh:mm"
+)
+st.write("Tu examen será el:", proximo_examen)
