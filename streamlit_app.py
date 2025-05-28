@@ -1,39 +1,43 @@
 import streamlit as st
 
-st.header('preferencias personales')
+st.header('Selecciona tus preferencias')
 
-# Pregunta 1: ¿Cuál es tu forma favorita de pasar un domingo?
-domingo = st.selectbox(
-    '¿Cómo prefieres pasar un domingo?',
-    ('Dormir hasta tarde', 'Salir con amigos', 'Ver series o películas', 'Hacer algo productivo')
+# Pregunta 1: Actividades favoritas en tu tiempo libre
+actividades = st.multiselect(
+    '¿Qué actividades disfrutas en tu tiempo libre?',
+    ['Leer', 'Escuchar música', 'Salir con amigos', 'Ver series', 'Hacer ejercicio'],
+    default=['Escuchar música', 'Ver series']
 )
-st.write('Tu plan de domingo es:', domingo)
+st.write('Actividades seleccionadas:', actividades)
 
-# Pregunta 2: ¿Qué música sueles escuchar más?
-musica = st.selectbox(
-    '¿Qué tipo de música escuchas más seguido?',
-    ('Rock', 'Reguetón', 'Pop', 'Instrumental / Lo-fi')
+# Pregunta 2: Comidas que nunca rechazarías
+comidas = st.multiselect(
+    '¿Qué comidas te encantan y nunca rechazarías?',
+    ['Pizza', 'Tacos', 'Hamburguesas', 'Sushi', 'Pasta'],
+    default=['Pizza', 'Tacos']
 )
-st.write('Tu estilo de música es:', musica)
+st.write('Tus favoritas:', comidas)
 
-# Pregunta 3: ¿Qué bebida prefieres para concentrarte?
-bebida = st.selectbox(
-    'Cuando estudias o trabajas, ¿qué sueles tomar?',
-    ('Café', 'Té', 'Agua', 'Nada')
+# Pregunta 3: Lugares donde te gustaría viajar
+viajes = st.multiselect(
+    '¿A qué lugares te gustaría viajar?',
+    ['Japón', 'Italia', 'Islandia', 'Perú', 'Canadá'],
+    default=['Japón', 'Italia']
 )
-st.write('Prefieres tomar:', bebida)
+st.write('Te gustaría ir a:', viajes)
 
-# Pregunta 4: ¿A qué hora te concentras mejor?
-concentracion = st.selectbox(
-    '¿Cuál es tu mejor momento del día para concentrarte?',
-    ('Mañana temprano', 'Tarde', 'Noche', 'Depende del día')
+# Pregunta 4: Aplicaciones que usas casi a diario
+apps = st.multiselect(
+    '¿Qué apps usas casi todos los días?',
+    ['WhatsApp', 'Instagram', 'Spotify', 'YouTube', 'Google Maps'],
+    default=['WhatsApp', 'YouTube']
 )
-st.write('Tu mejor momento es:', concentracion)
+st.write('Usas frecuentemente:', apps)
 
-# Pregunta 5: ¿Qué tipo de películas prefieres?
-peliculas = st.selectbox(
-    '¿Qué tipo de películas te gustan más?',
-    ('Suspenso', 'Comedia', 'Ciencia ficción', 'Drama')
+# Pregunta 5: Hábitos que intentas mantener
+habitos = st.multiselect(
+    '¿Qué hábitos intentas mantener con regularidad?',
+    ['Dormir bien', 'Comer saludable', 'Estudiar', 'Hacer ejercicio', 'Leer'],
+    default=['Dormir bien', 'Comer saludable']
 )
-st.write('Tu tipo favorito de películas es:', peliculas)
-
+st.write('Tus hábitos seleccionados:', habitos)
